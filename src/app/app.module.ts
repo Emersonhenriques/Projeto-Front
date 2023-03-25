@@ -10,6 +10,7 @@ import { DetailsComponent } from './details/details.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommentsComponent } from './comments/comments.component';
+import { CommentsDetailsComponent } from './comments-details/comments-details.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CommentsComponent } from './comments/comments.component';
     PostsComponent,
     UsersComponent,
     DetailsComponent,
-    CommentsComponent
+    CommentsComponent,
+    CommentsDetailsComponent
   ],
   imports: [
     BrowserModule,

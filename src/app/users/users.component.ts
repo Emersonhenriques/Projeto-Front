@@ -1,7 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Observable, throwError } from 'rxjs';
-import { trigger, style, transition, animate, keyframes, query, stagger } from '@angular/animations';
+import {
+  trigger,
+  style,
+  transition,
+  animate,
+  keyframes,
+  query,
+  stagger,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-users',
@@ -20,27 +28,23 @@ import { trigger, style, transition, animate, keyframes, query, stagger } from '
                 '550ms ease-out',
                 style({ opacity: 1, transform: 'translateY(0px)' })
               )
-            )
+            ),
           ],
           { optional: true }
         ),
         query(':leave', animate('100ms', style({ opacity: 0 })), {
-          optional: true
-        })
-      ])
-    ])
-  ]
+          optional: true,
+        }),
+      ]),
+    ]),
+  ],
 })
 export class UsersComponent implements OnInit {
-
   users$: Object;
 
-  constructor(private data: DataService) { }
+  constructor(private data: DataService) {}
 
   ngOnInit() {
-    this.data.getUsers().subscribe(
-      (data: any) => this.users$ = data
-    );
+    this.data.getUsers().subscribe((data: any) => (this.users$ = data));
   }
-
 }

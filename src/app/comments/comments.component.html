@@ -1,11 +1,16 @@
-<div *ngIf="cm$">
-  <h1>{{ cm$.postId }}</h1>
+<h1>comments</h1>
 
-  <ul>
-    <li><strong>Id:</strong> {{ cm$.id }}</li>
-    <li><strong>Título:</strong> {{ cm$.name }}</li>
-    <li><strong>Email:</strong> {{ cm$.email }}</li>
-    <li><strong>Detalhes:</strong> {{ cm$.body }}</li>
-  </ul>
-</div>
+<ul [@listStagger]="comments$">
+  <li *ngFor="let comment of comments$">
+    <a
+      routerLink="/comments-details/{{ comment.id }}"
+      routerLinkActive="activated"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >{{ comment.name }}</a
+    >
 
+    <ul>
+      <li>{{ comment.email }}</li>
+    </ul>
+  </li>
+</ul>

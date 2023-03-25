@@ -1,7 +1,15 @@
-import { animate, query, stagger, style, transition, trigger } from '@angular/animations';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../data.service';
+import {
+  trigger,
+  style,
+  transition,
+  animate,
+  keyframes,
+  query,
+  stagger,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-comments',
@@ -20,31 +28,24 @@ import { DataService } from '../data.service';
                 '550ms ease-out',
                 style({ opacity: 1, transform: 'translateY(0px)' })
               )
-            )
+            ),
           ],
           { optional: true }
         ),
         query(':leave', animate('100ms', style({ opacity: 0 })), {
-          optional: true
-        })
-      ])
-    ])
-  ]
+          optional: true,
+        }),
+      ]),
+    ]),
+  ],
 })
-export class CommentsComponent {
 
-  cm$: any;
+export class CommentsComponent implements OnInit {
+  comments$: Object;
 
-  constructor(private data: DataService, private route: ActivatedRoute) {
-    this.route.params.subscribe( params => this.cm$ = params.id)
-  }
+  constructor(private data: DataService) {}
 
   ngOnInit() {
-    this.data.getComment(this.cm$).subscribe(
-      (data : any) => this.cm$ = data
-    )
+    this.data.getComments().subscribe((data: any) => (this.comments$ = data));
   }
-
 }
-
-
